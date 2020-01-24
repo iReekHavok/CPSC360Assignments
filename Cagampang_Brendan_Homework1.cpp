@@ -7,10 +7,6 @@ using std::cout;
 using std::endl;
 
 int main() {
-  srand(time(NULL));
-  int playerScore, cpuScore, die;
-  char roh; // roll or hold
-
   cout << "Welcome to The Game of Pig, created by Brendan Cagampang!\n" << endl;
   cout << "Controls:\nPress R to roll the die. Any other character will hold.\n" << endl;
   cout << "Rules:" << endl;
@@ -19,22 +15,75 @@ int main() {
   cout << "First to 100 wins.\n" << endl;
   cout << "I wish you the best of luck. Here we go!\n\n" << endl;
 
-  for (int i=0; i<1; i++) {
-    int wgf = rand() % 2; // wgf = who goes first
+  int playerScore = cpuScore = turnTotal = 0;
+  int rollDie();
+  int wgf();  // who goes first
+  char roh;   // roll or hold
+  srand(time(NULL));
 
-    if (wgf == 0) {   // scenario 1 - user goes first
-      cout << "You are Player 1" << endl;
-
-    }
-    else {            // scenario 2 - CPU goes first
-      cout << "You are Player 2." << endl;
-      roh = 'r';
-      cout << "Player 1 rolls." << endl;
-      if (roh == 'r') {
-        
+  wgf = wgf();
+  if (wgf == 0) {
+    cout << "You are Player 1" << endl;
+    while (playerScore < 100) {
+      die = rollDie();
+      while (die != 1) {
+        cout << "Roll: " << die << endl;
+        turnTotal += die;
+        if(die == 1) {
+          turnTotal = 0;
+          cout << "Turn total: " << turnTotal << "\nNew score: " << playerScore << endl;
+        } else if (turnTotal >= 20) {
+          player+= turnTotal;
+          cout << "Turn total: " << turnTotal << "\nNew score: " << playerScore << endl;
+          break;
+        }
       }
+
+      cout << "Player 1 score: " <<  cpuScore << "\nPlayer 2 score: " << playerScore << endl;
+  		cout << "\nIt is Player 2's turn." <<std::endl;
+  		die = rollDie();
+  		turnTotal = 0;
+  		turnTotal += die;
+  		cout << "Roll: " << die;
+
+      while(die != 1 || roh != 'h'){		// users while loop
+  			if (die == 1)
+  				break;
+  			cout << "\nTurn Total: " << turnTotal << endl;
+        cout << "Roll/Hold? ";
+  			cin >> roh;
+  			if (roh =='r') {
+  				srand(time(0));
+					die = rollDie();
+					turnTotal += die;
+					cout << "Roll: " << die;
+
+  				if die == 1) {
+  					turnTotal = 0;
+  					cout << "\nTurn Total: " << turnTotal << "\nNew Score: " << playerScore << endl;
+  				break;
+  				}
+  			}else{
+  				roll = 0;
+  				turnTotal2 += roll;
+  				p2Score += turnTotal2;
+  				std::cout << "Turn Total: " << turnTotal2 << std::endl;
+  				break;
+  			}
+  		}
+
     }
   }
 
   return 0;
+}
+
+int rollDie() {
+  int roll = rand() % 6 + 1;
+  return roll;
+}
+
+int wgf() { //who goes first
+  int player = rand() % 2;
+  return player;
 }
