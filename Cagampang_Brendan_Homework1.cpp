@@ -31,10 +31,10 @@ int main() {
         turnTotal += die;
         if(die == 1) {
           turnTotal = 0;
-          cout << "Turn total: " << turnTotal << "\nNew score: " << playerScore << endl;
+          cout << "Turn total: " << turnTotal << "\nNew score: " << cpuScore << endl;
         } else if (turnTotal >= 20) {
-          player+= turnTotal;
-          cout << "Turn total: " << turnTotal << "\nNew score: " << playerScore << endl;
+          cpuScore += turnTotal;
+          cout << "Turn total: " << turnTotal << "\nNew score: " << cpuScore << endl;
           break;
         }
       }
@@ -63,12 +63,12 @@ int main() {
   					cout << "\nTurn Total: " << turnTotal << "\nNew Score: " << playerScore << endl;
   				break;
   				}
-  			}else{
-  				roll = 0;
-  				turnTotal2 += roll;
-  				p2Score += turnTotal2;
-  				std::cout << "Turn Total: " << turnTotal2 << std::endl;
-  				break;
+  			} else {
+    				die = 0;
+    				turnTotal += roll;
+    				playerScore += turnTotal;
+    				cout << "Turn Total: " << turnTotal << endl;
+    				break;
   			}
   		}
 
