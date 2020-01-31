@@ -97,6 +97,7 @@ int main() {
           cout << "Enter the number of tickets you'd like to buy: ";
           cin >> ticketsBought;
           for(int i=0;i<ticketsBought;i++) {
+            //get row(s)
             cout << "Enter the row: ";
             cin >> row;
             if (row > 15 || row < 1) {
@@ -104,6 +105,7 @@ int main() {
               break;
             }
             row -= 1;
+            //get column(s)
             cout << "Enter the column: ";
             cin >> column;
             if (column > 30 || column < 1) {
@@ -111,11 +113,12 @@ int main() {
               break;
             }
             column -= 1;
+
             if (concertSeats[row][column] == '#'){		//seat is empty
-							concertSeats[row][column] = '*';		//fill it
+							concertSeats[row][column] = '*';		//seat is taken
 							totalSeats -= 1;						//subtract 1 from total seats
 							openSeat = true;
-							std::cout<< "Great! That seat is available!" <<std::endl;
+							std::cout<< "Ticket(s) purchased and seats reserved." <<std::endl;
 							row += 1;					//return the value of row back to what it was before
 							//assigning cost
 							if (row < 8) {
@@ -193,7 +196,7 @@ int main() {
   */
         cout << "Seats sold: " << totalSales << endl;
         for(int i=0;i<ROWS;i++) {
-          cout << "Seats remaining in Row " << i+1 << ":" << endl;
+          cout << "Seats remaining in Row " << i+1 << ":" << endl;  //shows seats remaining in row
         }
         lower();
         break;
