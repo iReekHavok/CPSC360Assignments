@@ -32,7 +32,14 @@ int main() {
       concertSeats[i][j]='#';
 
   int totalSales = 0;  //tracks total sales
+  int ticketsBought;
+  int row, column;
+  int row1 = 15, row2 = 15, row3 = 15, row4 = 15, row5 = 15;
+  int row6 = 15, row7 = 15, row8 = 15, row9 = 15, row10 = 15;
+  int row11 = 15, row12 = 15, row13 = 15, row14 = 15, row15 = 15;
+  int totalSeats = 450;
   char userChoice;
+  bool openSeat = false;
 
   do {
   /*TO DO: ask user for choice here, e.g.:
@@ -75,19 +82,94 @@ int main() {
         break;
       case 'B':
         upper();
-
+        /*TO DO: code for letting user buy tickets
+        -also updates total sales and seating chart
+        -up to you to implement, but the following steps may help:
+        Steps:
+        1. Ask how many tickets user wants to buy
+        2. For each ticket they want to purchase
+        -Ask user to enter row number followed by seat number
+        -Validate that the rows selected are valid (not taken)
+        -If seat selection is valid, update order cost and seating chart
+        -Repeat until user has purchased the number of tickets they entered
+        */
+        while(openSeat == false) {
+          cout << "Enter the number of tickets you'd like to buy: ";
+          cin >> ticketsBought;
+          for(int i=0;i<ticketsBought;i++) {
+            cout << "Enter the row: ";
+            cin >> row;
+            if (row > 15 || row < 1) {
+              cout << "Row does not exist. Please select a valid row (1-15). " << endl;
+              break;
+            }
+            column -= 1;
+            if (concertSeats[row][column] == '#'){		//if seat is empty
+							concertSeats[row][column] = '*';		//fill it
+							totalSeats -= 1;						//subtract 1 from total seats
+							openSeat = true;						//to get out of loop after were done
+							std::cout<< "Great! That seat is available!" <<std::endl;
+							row += 1;					//return the value of row back to what it was before
+							//assigning cost
+							if (row < 8) {
+								totalSales += FRONT_ROW_COST;
+              }
+							else {
+								totalSales += BACK_ROW_COST;
+              }
+							//subtract seat when purchased
+							if(row==1){
+								row1--;
+              }
+							else if(row==2){
+								row2--;
+              }
+							else if(row==3){
+								row3--;
+              }
+							else if(row==4){
+								row4--;
+              }
+							else if(row==5){
+								row5--;
+              }
+							else if(row==6){
+								row6--;
+              }
+							else if(row==7){
+								row7--;
+              }
+							else if(row==8){
+								row8--;
+              }
+							else if(row==9){
+								row9--;
+              }
+							else if(row==10){
+								row10--;
+              }
+							else if(row==11){
+								row11--;
+              }
+							else if(row==12){
+								row12--;
+              }
+							else if(row==13){
+								row13--;
+              }
+							else if(row==14){
+								row14--;
+              }
+							else if(row==15){
+								row15--;
+              }
+						}
+						else
+							std::cout << "Sorry, that seat is not available." <<std::endl;
+					}
+      	}
+      	openSeat = false;
         lower();
-  /*TO DO: code for letting user buy tickets
-  	-also updates total sales and seating chart
-  	-up to you to implement, but the following steps may help:
-  	Steps:
-  	1. Ask how many tickets user wants to buy
-  	2. For each ticket they want to purchase
-  		-Ask user to enter row number followed by seat number
-  		-Validate that the rows selected are valid (not taken)
-  		-If seat selection is valid, update order cost and seating chart
-  		-Repeat until user has purchased the number of tickets they entered
-  */
         break;
       case 'T':
         upper();
