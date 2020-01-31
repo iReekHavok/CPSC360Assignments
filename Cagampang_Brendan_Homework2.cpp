@@ -103,11 +103,18 @@ int main() {
               cout << "Row does not exist. Please select a valid row (1-15). " << endl;
               break;
             }
+            row -= 1;
+            cout << "Enter the column: ";
+            cin >> column;
+            if (column > 30 || column < 1) {
+              cout << "Column does not exist. Please select a valid column (1-30). " << endl;
+              break;
+            }
             column -= 1;
-            if (concertSeats[row][column] == '#'){		//if seat is empty
+            if (concertSeats[row][column] == '#'){		//seat is empty
 							concertSeats[row][column] = '*';		//fill it
 							totalSeats -= 1;						//subtract 1 from total seats
-							openSeat = true;						//to get out of loop after were done
+							openSeat = true;
 							std::cout<< "Great! That seat is available!" <<std::endl;
 							row += 1;					//return the value of row back to what it was before
 							//assigning cost
