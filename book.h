@@ -29,6 +29,11 @@ class Book {
     void borrowBook();     //book gets borrowed
     void returnBook();     //book is returned
     string availability(); //output based on availability
+
+    //overloads for HW6
+    Book operator=(const Book &right);  //bookLibrary[i] = bookLibrary[j]
+    Book operator+(const Book &right);  //book titles are concatenated with a comma
+    Book operator-(Book &right);        //Book1 replaces Book2, Book2 = No Title, 0
 };
 
 #endif

@@ -64,3 +64,31 @@ string Book::availability() {
     return "No, book is currently checked out.";
   } else { return "Yes, the book is available."; }
 }
+
+//overloads for HW6
+Book Book::operator=(const Book &right) {
+  TITLE = right.TITLE;
+  ID = right.ID;
+  CHECKEDOUT = right.CHECKEDOUT;
+
+  return *this;
+}
+
+Book Book::operator+(const Book &right) {
+  Book temp;
+  temp.TITLE = TITLE + ", " + right.TITLE;
+  temp.ID = rand() % 1000 + 1;
+  temp.CHECKEDOUT = false;
+  
+  return temp;
+}
+
+Book Book::operator-(Book &right) {
+  TITLE = right.TITLE;
+	ID = right.ID;
+	CHECKEDOUT = right.CHECKEDOUT;
+	right.TITLE = "No Title";
+	right.ID = 0;
+
+	return *this;
+}
